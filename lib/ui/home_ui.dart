@@ -8,12 +8,12 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 //import 'package:gerenteloja/tabs/users_tab.dart';
 //import 'package:gerenteloja/widgets/edit_category_dialog.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeUi extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomeUiState createState() => _HomeUiState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeUiState extends State<HomeUi> {
 
   PageController? _pageController;
   int _page = 0;
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    _pageController.dispose();
+    _pageController?.dispose();
 
     super.dispose();
   }
@@ -140,9 +140,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Icon(Icons.add),
           backgroundColor: Colors.pinkAccent,
           onPressed: (){
-            showDialog(context: context,
+          /*  showDialog(context: context,
                 builder: (context) => EditCategoryDialog()
-            );
+            );*/
           },
         );
     }

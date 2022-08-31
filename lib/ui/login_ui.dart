@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gerenteloja/widgets/input_field.dart';
 import 'package:gerenteloja/blocs/login_bloc.dart';
-//import 'package:gerente_loja/screens/home_screen.dart';
+import 'package:gerenteloja/ui/home_ui.dart';
 
 class LoginUi extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class _LoginUiState extends State<LoginUi> {
       switch(state){
         case LoginState.SUCCESS:
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context)=>HomeScreen())
+            MaterialPageRoute(builder: (context)=>HomeUi())
           );
           break;
         case LoginState.FAIL:
