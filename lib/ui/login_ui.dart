@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gerenteloja/widgets/input_field.dart';
-//import 'package:gerente_loja/blocs/login_bloc.dart';
+import 'package:gerenteloja/blocs/login_bloc.dart';
 //import 'package:gerente_loja/screens/home_screen.dart';
-//import 'package:gerente_loja/widgets/input_field.dart';
 
 class LoginUi extends StatefulWidget {
   @override
@@ -11,13 +10,13 @@ class LoginUi extends StatefulWidget {
 
 class _LoginUiState extends State<LoginUi> {
 
-  //final _loginBloc = LoginBloc();
+  final _loginBloc = LoginBloc();
 
   @override
   void initState() {
     super.initState();
 
-    /*_loginBloc.outState.listen((state){
+    _loginBloc.outState.listen((state){
       switch(state){
         case LoginState.SUCCESS:
           Navigator.of(context).pushReplacement(
@@ -33,12 +32,12 @@ class _LoginUiState extends State<LoginUi> {
         case LoginState.LOADING:
         case LoginState.IDLE:
       }
-    });*/
+    });
   }
 
   @override
   void dispose() {
-    //_loginBloc.dispose();
+    _loginBloc.dispose();
     super.dispose();
   }
 
@@ -61,8 +60,8 @@ class _LoginUiState extends State<LoginUi> {
                     icon: Icons.person_outline,
                     hint: "Usuário",
                     obscure: false,
-                    stream: , //_loginBloc.outEmail,
-                    onChanged: //_loginBloc.changeEmail,
+                    stream: _loginBloc.outEmail,
+                    onChanged: _loginBloc.changeEmail,
                   ),
                   InputField(
                     icon: Icons.lock_outline,

@@ -42,13 +42,13 @@ class LoginBloc extends BlocBase with LoginValidators {
     });
   }
 
-  void submit(){
+  Future<void> submit() async {
     final email = _emailController.value;
     final password = _passwordController.value;
 
     _stateController.add(LoginState.LOADING);
 
-    FirebaseAuth.instance.signInWithEmailAndPassword(
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password
     ).catchError((e){
@@ -74,7 +74,6 @@ class LoginBloc extends BlocBase with LoginValidators {
     _passwordController.close();
     _stateController.close();
 
-    _streamSubscription.cancel();
+    _streamSubscription?.cancel();
   }
-
 }
