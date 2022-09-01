@@ -34,8 +34,7 @@ class UserBloc extends BlocBase {
 
   void _addUsersListener(){
     _firestore.collection("users").snapshots().listen((snapshot){
-      snapshot.docChanges.forEach((change){
-
+      for (var change in snapshot.docChanges) {
         String uid = change.doc.id;
 
         switch(change.type){
@@ -53,14 +52,15 @@ class UserBloc extends BlocBase {
             _usersController.add(_users.values.toList());
             break;
         }
-
-      });
+      }
     });
   }
   
   void _subscribeToOrders(String uid){
-    _users[uid]?["subscription"] = _firestore.collection("users").doc(uid)
-        .collection("orders").snapshots().listen((orders) async {
+    _users[uid]!["subscription"] =
+        _firestore.collection("users").doc(uid)
+          .collection("orders")
+          .snapshots().listen((orders) async {
 
           int numOrders = orders.docs.length;
 
@@ -72,7 +72,7 @@ class UserBloc extends BlocBase {
             
             if(order.data == null) continue;
 
-            money += order.data["totalPrice"];
+            money += order.get("totalPrice"); // .data() !["totalPrice"];
           }
           
           _users[uid]!.addAll(

@@ -2,8 +2,8 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:gerenteloja/tabs/users_tab.dart';
+import 'package:gerenteloja/blocs/user_bloc.dart';
 //import 'package:gerenteloja/blocs/orders_bloc.dart';
-//import 'package:gerenteloja/blocs/user_bloc.dart';
 //import 'package:gerenteloja/tabs/orders_tab.dart';
 //import 'package:gerenteloja/tabs/products_tab.dart';
 //import 'package:gerenteloja/tabs/users_tab.dart';
@@ -19,7 +19,7 @@ class _HomeUiState extends State<HomeUi> {
   PageController? _pageController;
   int _page = 0;
 
-  //UserBloc _userBloc;
+  late UserBloc _userBloc;
   //OrdersBloc _ordersBloc;
 
   @override
@@ -28,7 +28,7 @@ class _HomeUiState extends State<HomeUi> {
 
     _pageController = PageController();
 
-    //_userBloc = UserBloc();
+    _userBloc = UserBloc();
     //_ordersBloc = OrdersBloc();
   }
 
@@ -44,55 +44,24 @@ class _HomeUiState extends State<HomeUi> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[850],
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-            canvasColor: Colors.pinkAccent,
-            primaryColor: Colors.white,
-            textTheme: Theme.of(context).textTheme.copyWith(
-                caption: TextStyle(color: Colors.white54)
-            )
-        ),
-        child: BottomNavigationBar(
-            currentIndex: _page,
-            onTap: (p){
-              _pageController!. animateToPage(
-                  p,
-                  duration: Duration(milliseconds: 500),
-                  curve: Curves.ease
-              );
-            },
-            items: [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: "Clientes",
-                  tooltip: "Clientes",
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_cart),
-                  label: "Pedidos",
-                  tooltip: "Pedidos"
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.list),
-                  label: "Produtos",
-                  tooltip: "Produtos"
-              )
-            ]
-        ),
-      ),
+      bottomNavigationBar: _buildBottomNavigationbar(),
       body: SafeArea(
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: (p) {
-            setState(() {
-              _page = p;
-            });
-          },
-          children: <Widget>[
-            UsersTab(),
-            Container(color: Colors.yellow,),
-            Container(color: Colors.green,),
-          ],
+        child: BlocProvider(
+          blocs: [Bloc((i) => _userBloc)],
+          dependencies: [],
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (p) {
+              setState(() {
+                _page = p;
+              });
+            },
+            children: <Widget>[
+              UsersTab(),
+              Container(color: Colors.yellow,),
+              Container(color: Colors.green,),
+            ],
+          ),
         ),
       ), /*BlocProvider<UserBloc>(
           bloc: _userBloc,
@@ -107,6 +76,38 @@ class _HomeUiState extends State<HomeUi> {
           ),
         ),*/
       floatingActionButton: _buildFloating(),
+    );
+  }
+
+  _buildBottomNavigationbar() {
+    return BottomNavigationBar(
+      currentIndex: _page,
+      onTap: (p) {
+        _pageController?.animateToPage(p,
+            duration: const Duration(milliseconds: 750),
+            curve: Curves.easeInOutQuad);
+      },
+      backgroundColor: Theme.of(context).primaryColor,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: 'Clientes',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.shopping_cart),
+          label: 'Pedidos',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.list),
+          label: 'Produtos',
+        ),
+      ],
+      selectedLabelStyle: const TextStyle(
+        fontSize: 16,
+        color: Colors.white,
+      ),
+      selectedItemColor: Colors.yellowAccent,
+      unselectedItemColor: Colors.white,
     );
   }
 
