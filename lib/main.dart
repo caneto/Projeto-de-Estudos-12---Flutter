@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
     ]);
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Gerente de Pedidos',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

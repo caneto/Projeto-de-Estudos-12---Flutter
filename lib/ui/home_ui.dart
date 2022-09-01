@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:gerenteloja/tabs/users_tab.dart';
 //import 'package:gerenteloja/blocs/orders_bloc.dart';
 //import 'package:gerenteloja/blocs/user_bloc.dart';
 //import 'package:gerenteloja/tabs/orders_tab.dart';
@@ -54,7 +55,7 @@ class _HomeUiState extends State<HomeUi> {
         child: BottomNavigationBar(
             currentIndex: _page,
             onTap: (p){
-              _pageController!.animateToPage(
+              _pageController!. animateToPage(
                   p,
                   duration: Duration(milliseconds: 500),
                   curve: Curves.ease
@@ -79,27 +80,32 @@ class _HomeUiState extends State<HomeUi> {
             ]
         ),
       ),
-      body: Container(), /*SafeArea(
-        child: BlocProvider<UserBloc>(
+      body: SafeArea(
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (p) {
+            setState(() {
+              _page = p;
+            });
+          },
+          children: <Widget>[
+            UsersTab(),
+            Container(color: Colors.yellow,),
+            Container(color: Colors.green,),
+          ],
+        ),
+      ), /*BlocProvider<UserBloc>(
           bloc: _userBloc,
           child: BlocProvider<OrdersBloc>(
             bloc: _ordersBloc,
             child: PageView(
-              controller: _pageController,
-              onPageChanged: (p){
-                setState(() {
-                  _page = p;
-                });
-              },
               children: <Widget>[
-                UsersTab(),
                 OrdersTab(),
                 ProductsTab()
               ],
             ),
           ),
-        ),
-      ),*/
+        ),*/
       floatingActionButton: _buildFloating(),
     );
   }
