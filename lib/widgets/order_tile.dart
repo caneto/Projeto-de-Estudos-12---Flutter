@@ -4,9 +4,9 @@ import 'package:gerenteloja/widgets/order_header.dart';
 
 class OrderTile extends StatelessWidget {
   
-  //final DocumentSnapshot order;
+  final DocumentSnapshot order;
   
-  //OrderTile(this.order);
+  OrderTile(this.order);
 
   final states = [
     "", "Em preparação", "Em transporte", "Aguardando Entrega", "Entregue"

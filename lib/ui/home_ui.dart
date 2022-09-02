@@ -4,7 +4,8 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:gerenteloja/tabs/orders_tab.dart';
 import 'package:gerenteloja/tabs/users_tab.dart';
 import 'package:gerenteloja/blocs/user_bloc.dart';
-//import 'package:gerenteloja/blocs/orders_bloc.dart';
+import 'package:gerenteloja/blocs/orders_bloc.dart';
+
 //import 'package:gerenteloja/tabs/orders_tab.dart';
 //import 'package:gerenteloja/tabs/products_tab.dart';
 //import 'package:gerenteloja/tabs/users_tab.dart';
@@ -21,7 +22,7 @@ class _HomeUiState extends State<HomeUi> {
   int _page = 0;
 
   late UserBloc _userBloc;
-  //OrdersBloc _ordersBloc;
+  late OrdersBloc _ordersBloc;
 
   @override
   void initState() {
@@ -30,9 +31,8 @@ class _HomeUiState extends State<HomeUi> {
     _pageController = PageController();
 
     _userBloc = UserBloc();
-    //_ordersBloc = OrdersBloc();
+    _ordersBloc = OrdersBloc();
   }
-
 
   @override
   void dispose() {
@@ -50,27 +50,26 @@ class _HomeUiState extends State<HomeUi> {
         child: BlocProvider(
           blocs: [Bloc((i) => _userBloc)],
           dependencies: [],
-          child: PageView(
-            controller: _pageController,
-            onPageChanged: (p) {
-              setState(() {
-                _page = p;
-              });
-            },
-            children: <Widget>[
-              UsersTab(),
-              OrdersTab(),
-              Container(color: Colors.green,),
-            ],
+          child: BlocProvider(
+            blocs: [Bloc((i) => _ordersBloc)],
+            dependencies: [],
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (p) {
+                setState(() {
+                  _page = p;
+                });
+              },
+              children: <Widget>[
+                UsersTab(),
+                OrdersTab(),
+                Container(color: Colors.green,),
+              ],
+            ),
           ),
         ),
-      ), /*BlocProvider<UserBloc>(
-          bloc: _userBloc,
-          child: BlocProvider<OrdersBloc>(
-            bloc: _ordersBloc,
-            child: PageView(
-              children: <Widget>[
-                OrdersTab(),
+      ), /*
+
                 ProductsTab()
               ],
             ),
@@ -88,7 +87,9 @@ class _HomeUiState extends State<HomeUi> {
             duration: const Duration(milliseconds: 750),
             curve: Curves.easeInOutQuad);
       },
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme
+          .of(context)
+          .primaryColor,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
@@ -112,8 +113,8 @@ class _HomeUiState extends State<HomeUi> {
     );
   }
 
-  Widget _buildFloating(){
-    switch(_page){
+  Widget _buildFloating() {
+    switch (_page) {
       case 0:
         return Container();
       case 1:
@@ -128,7 +129,7 @@ class _HomeUiState extends State<HomeUi> {
                 backgroundColor: Colors.white,
                 label: "Concluídos Abaixo",
                 labelStyle: TextStyle(fontSize: 14),
-                onTap: (){
+                onTap: () {
                   //_ordersBloc.setOrderCriteria(SortCriteria.READY_LAST);
                 }
             ),
@@ -137,7 +138,7 @@ class _HomeUiState extends State<HomeUi> {
                 backgroundColor: Colors.white,
                 label: "Concluídos Acima",
                 labelStyle: TextStyle(fontSize: 14),
-                onTap: (){
+                onTap: () {
                   //_ordersBloc.setOrderCriteria(SortCriteria.READY_FIRST);
                 }
             )
@@ -147,8 +148,8 @@ class _HomeUiState extends State<HomeUi> {
         return FloatingActionButton(
           child: Icon(Icons.add),
           backgroundColor: Colors.pinkAccent,
-          onPressed: (){
-          /*  showDialog(context: context,
+          onPressed: () {
+            /*  showDialog(context: context,
                 builder: (context) => EditCategoryDialog()
             );*/
           },
