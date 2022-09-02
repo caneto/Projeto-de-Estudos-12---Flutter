@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-//import 'package:gerenteloja/widgets/order_header.dart';
+import 'package:gerenteloja/widgets/order_header.dart';
 
 class OrderTile extends StatelessWidget {
   
@@ -28,7 +28,7 @@ class OrderTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  //OrderHeader(order),
+                  OrderHeader(),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[ListTile(
