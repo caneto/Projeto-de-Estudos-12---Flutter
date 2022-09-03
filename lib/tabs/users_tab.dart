@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:gerenteloja/blocs/user_bloc.dart';
@@ -9,7 +10,8 @@ class UsersTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final _userBloc = BlocProvider.getBloc<UserBloc>();
+   // final _userBloc = BlocProvider.getBloc<UserBloc>();
+    final _userBloc = UserBloc();
 
     return Column(
       children: <Widget>[

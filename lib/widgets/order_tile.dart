@@ -45,19 +45,40 @@ class OrderTile extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      FlatButton(
+                      TextButton(
                         onPressed: () {},
-                        textColor: Colors.red,
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.red,
+                            minimumSize: Size(88, 36),
+                            padding: EdgeInsets.symmetric(horizontal: 16.0),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(2.0)),
+                            ),
+                          ),
                         child: Text("Excluir"),
                       ),
-                      FlatButton(
+                      TextButton(
                         onPressed: () {},
-                        textColor: Colors.grey[850],
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.grey[850],
+                          minimumSize: Size(88, 36),
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(2.0)),
+                          ),
+                        ),
                         child: Text("Regredir"),
                       ),
-                      FlatButton(
+                      TextButton(
                         onPressed: () {},
-                        textColor: Colors.green,
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.green,
+                          minimumSize: Size(88, 36),
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(2.0)),
+                          ),
+                        ),
                         child: Text("Avançar"),
                       )
                     ],

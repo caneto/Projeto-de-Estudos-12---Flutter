@@ -44,7 +44,7 @@ class _LoginUiState extends State<LoginUi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[850],
+      backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
             child: Container(
               margin: EdgeInsets.all(16),
@@ -56,16 +56,26 @@ class _LoginUiState extends State<LoginUi> {
                     color: Colors.pinkAccent,
                     size: 160,
                   ),
+                  SizedBox(height: 12,),
                   InputField(
                     icon: Icons.person_outline,
+                    colorIcon: Colors.lightBlue,
                     hint: "Usuário",
+                    hintColor: Colors.grey.shade400,
+                    styleColor: Colors.blueGrey,
+                    borderSideColor: Colors.pinkAccent,
                     obscure: false,
                     stream: _loginBloc.outEmail,
                     onChanged: _loginBloc.changeEmail,
                   ),
+                  SizedBox(height: 10,),
                   InputField(
                     icon: Icons.lock_outline,
+                    colorIcon: Colors.lightBlue,
                     hint: "Senha",
+                    hintColor: Colors.grey.shade400,
+                    styleColor: Colors.blueGrey,
+                    borderSideColor: Colors.pinkAccent,
                     obscure: true,
                     stream: _loginBloc.outPassword,
                     onChanged: _loginBloc.changePassword,
@@ -76,12 +86,10 @@ class _LoginUiState extends State<LoginUi> {
                       builder: (context, snapshot) {
                         return SizedBox(
                           height: 50,
-                          child: RaisedButton(
-                            color: Colors.pinkAccent,
+                          child: ElevatedButton(
+                            style: raisedButtonStyle,
                             child: Text("Entrar"),
                             onPressed: snapshot.hasData ? _loginBloc.submit : null,
-                            textColor: Colors.white,
-                            disabledColor: Colors.pinkAccent.withAlpha(140),
                           ),
                         );
                       }
@@ -92,4 +100,15 @@ class _LoginUiState extends State<LoginUi> {
         ),
       );
   }
+
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+    foregroundColor: Colors.white,
+    backgroundColor: Colors.pink.shade400,
+    textStyle: TextStyle(color: Colors.white),
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.symmetric(horizontal: 16),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2)),
+    ),
+  );
 }
