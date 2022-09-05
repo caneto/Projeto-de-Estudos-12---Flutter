@@ -28,8 +28,8 @@ class OrderHeader extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("${_user!["name"]}"),
-                  Text("${_user["address"]}")
+                  Text(_user != null ? "${_user["name"]}": ""),
+                  Text(_user != null ? "${_user["address"]}": "")
                 ],
               );
           }),
