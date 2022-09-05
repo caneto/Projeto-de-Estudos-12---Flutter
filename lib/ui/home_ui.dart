@@ -131,7 +131,7 @@ class _HomeUiState extends State<HomeUi> {
                 label: "Concluídos Abaixo",
                 labelStyle: TextStyle(fontSize: 14),
                 onTap: () {
-                  //_ordersBloc.setOrderCriteria(SortCriteria.READY_LAST);
+                  _ordersBloc.setOrderCriteria(SortCriteria.READY_LAST);
                 }
             ),
             SpeedDialChild(
@@ -140,7 +140,7 @@ class _HomeUiState extends State<HomeUi> {
                 label: "Concluídos Acima",
                 labelStyle: TextStyle(fontSize: 14),
                 onTap: () {
-                  //_ordersBloc.setOrderCriteria(SortCriteria.READY_FIRST);
+                  _ordersBloc.setOrderCriteria(SortCriteria.READY_FIRST);
                 }
             )
           ],

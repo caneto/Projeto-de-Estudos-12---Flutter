@@ -14,7 +14,7 @@ class OrdersBloc extends BlocBase {
 
   List<DocumentSnapshot> _orders = [];
 
-  //SortCriteria _criteria;
+  SortCriteria _criteria = SortCriteria.READY_FIRST;
 
   OrdersBloc(){
     _addOrdersListener();
@@ -40,12 +40,12 @@ class OrdersBloc extends BlocBase {
         }
       };
 
-      _ordersController.add(_orders);
-      //_sort();
+
+      _sort();
     });
   }
 
-  /*void setOrderCriteria(SortCriteria criteria){
+  void setOrderCriteria(SortCriteria criteria){
     _criteria = criteria;
 
     _sort();
@@ -76,7 +76,7 @@ class OrdersBloc extends BlocBase {
     }
 
     _ordersController.add(_orders);
-  }*/
+  }
 
   @override
   void dispose() {
