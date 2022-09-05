@@ -19,8 +19,8 @@ class OrderTile extends StatelessWidget {
       child: Card(
         child: ExpansionTile(
           title: Text(
-            "#xxxxx Entregue",
-            style: TextStyle(color:/* order.data["status"] != 4 ? Colors.grey[850] :*/ Colors.green),
+            "#${order.id.substring(order.id.length - 7, order.id.length)} - ",
+            style: TextStyle(color:order.get("status") != 4 ? Colors.grey[850] : Colors.green),
           ),
           children: <Widget>[
             Padding(
@@ -28,7 +28,7 @@ class OrderTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  OrderHeader(),
+                  OrderHeader(order),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[ListTile(

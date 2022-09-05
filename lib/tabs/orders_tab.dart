@@ -8,7 +8,8 @@ class OrdersTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final _ordersBloc = BlocProvider.getBloc<OrdersBloc>();
+    //final _ordersBloc = BlocProvider.getBloc<OrdersBloc>();
+    final _ordersBloc = OrdersBloc();
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 16),
@@ -28,7 +29,7 @@ class OrdersTab extends StatelessWidget {
               );
 
             return ListView.builder(
-                itemCount: 5, //snapshot.data!.length,
+                itemCount: snapshot.data!.length,
                 itemBuilder: (context, index){
                   return Container(
                   color: Colors.white30,
