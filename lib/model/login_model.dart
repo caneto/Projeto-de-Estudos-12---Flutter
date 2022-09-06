@@ -49,7 +49,7 @@ class LoginModel extends Model with LoginValidators {
 
       await _loadCurrentAdmin();
     }).catchError((onError) {
-      onFail(LoginState.FAIL);
+      onFail();
       isLoading = false;
       notifyListeners();
     });
