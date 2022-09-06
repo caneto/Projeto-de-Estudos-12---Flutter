@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:gerenteloja/blocs/user_bloc.dart';
+import 'package:gerenteloja/blocs/user_model.dart';
 import 'package:gerenteloja/widgets/user_tile.dart';
 
 class UsersTab extends StatelessWidget {
