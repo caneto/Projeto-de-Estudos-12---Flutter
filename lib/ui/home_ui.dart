@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:gerenteloja/tabs/orders_tab.dart';
 import 'package:gerenteloja/tabs/users_tab.dart';
+import 'package:gerenteloja/tabs/products_tab.dart';
 import 'package:gerenteloja/blocs/user_bloc.dart';
 import 'package:gerenteloja/blocs/orders_bloc.dart';
-
-//import 'package:gerenteloja/tabs/orders_tab.dart';
-//import 'package:gerenteloja/tabs/products_tab.dart';
-//import 'package:gerenteloja/tabs/users_tab.dart';
 //import 'package:gerenteloja/widgets/edit_category_dialog.dart';
 
 class HomeUi extends StatefulWidget {
@@ -63,8 +60,8 @@ class _HomeUiState extends State<HomeUi> {
               children: <Widget>[
                 UsersTab(),
                 OrdersTab(),
-                //Container(color: Colors.yellow,),
-                Container(color: Colors.green,),
+                ProductsTab()
+                //Container(color: Colors.green,),
               ],
             ),
           ),

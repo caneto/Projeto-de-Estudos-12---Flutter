@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gerenteloja/widgets/input_field.dart';
-import 'package:gerenteloja/blocs/login_bloc.dart';
+import 'package:gerenteloja/model/login_model.dart';
 import 'package:gerenteloja/ui/home_ui.dart';
 
 class LoginUi extends StatefulWidget {
